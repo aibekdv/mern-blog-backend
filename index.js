@@ -14,7 +14,7 @@ import { UserController, PostController } from "./controllers/index.js";
 
 mongoose
   .connect(
-    "mongodb+srv://aibekdv:nmkl2018@cluster0.aslmk.mongodb.net/blog?retryWrites=true&w=majority"
+    "mongodb+srv://user:<password>@cluster0.aslmk.mongodb.net/blog?retryWrites=true&w=majority"
   )
   .then(() => console.log("DB connected..."))
   .catch((e) => console.log("DB conntection failed: ", e));
@@ -35,6 +35,9 @@ const upload = multer({ storage });
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 app.use(cors());
+
+// @get tags
+app.get('/posts/tags', PostController.getLastTags);
 
 // @login
 app.post(
