@@ -17,7 +17,7 @@ export const getOne = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    await PostModel.findByIdAndUpdate(
+    PostModel.findByIdAndUpdate(
       {
         _id: postId,
       },
@@ -43,7 +43,7 @@ export const getOne = async (req, res) => {
 
         res.json(doc);
       }
-    );
+    ).populate('user');
   } catch (error) {
     console.log(error);
   }
@@ -53,7 +53,7 @@ export const remove = async (req, res) => {
   try {
     const postId = req.params.id;
 
-    await PostModel.findByIdAndDelete(
+    PostModel.findByIdAndDelete(
       {
         _id: postId,
       },
@@ -86,7 +86,7 @@ export const create = async (req, res) => {
     const doc = new PostModel({
       title: req.body.title,
       text: req.body.text,
-      tags: req.body.tags,
+      tags: req.body.tags.split(","),
       imgUrl: req.body.imgUrl,
       user: req.userId,
     });
@@ -113,7 +113,7 @@ export const update = async (req, res) => {
       {
         title: req.body.title,
         text: req.body.text,
-        tags: req.body.tags,
+        tags: req.body.tags.split(","),
         imgUrl: req.body.imgUrl,
         user: req.userId,
       }
