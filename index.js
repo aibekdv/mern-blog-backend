@@ -37,7 +37,7 @@ app.use("/uploads", express.static("uploads"));
 app.use(cors());
 
 // @get tags
-app.get('/posts/tags', PostController.getLastTags);
+app.get("/posts/tags", PostController.getLastTags);
 
 // @login
 app.post(
