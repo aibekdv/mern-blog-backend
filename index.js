@@ -14,7 +14,7 @@ import { UserController, PostController } from "./controllers/index.js";
 
 mongoose
   .connect(
-    "mongodb+srv://aibekdv:nmkl2018@cluster0.aslmk.mongodb.net/blog?retryWrites=true&w=majority"
+    "mongodb+srv://username:password@cluster0.aslmk.mongodb.net/blog?retryWrites=true&w=majority"
   )
   .then(() => console.log("DB connected..."))
   .catch((e) => console.log("DB conntection failed: ", e));
